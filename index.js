@@ -56,6 +56,12 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 
+client.on(Events.Error, (e)=>{client.login(token);console.log("Reconnecting...",e)});
+process.on('unhandledRejection', console.error);
+process.on('uncaughtException', console.error);
+process.on('uncaughtExceptionMonitor', console.error);
+
+
 dbConnect().then(() => {
     client.login(token);
     client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
